@@ -1,57 +1,78 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(MaterialApp(
+  home: UserPanel(),
+));
 
-class MyApp extends StatelessWidget{
+class UserPanel extends StatefulWidget {
+  const UserPanel({Key? key}) : super(key: key);
+
+  @override
+  State<UserPanel> createState() => _UserPanelState();
+}
+
+class _UserPanelState extends State<UserPanel> {
+
+  int _count = 0;
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(primaryColor: Colors.indigo),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('First Project'),
-          centerTitle: true,
+    return Scaffold(
+      backgroundColor: Colors.indigo,
+      appBar: AppBar(
+        title: Text('Back office'),
+        centerTitle:  true,
+        backgroundColor: Colors.black45,
+      ),
+      body: SafeArea(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Column(
+              children: [
+                Padding(padding: EdgeInsets.only(top: 30)),
+                Text('Danilov Albert', style: TextStyle(
+                    fontSize: 24,
+                    color: Colors.white,
+                    fontFamily: 'Fredoka'
+                )),
+                Padding(padding: EdgeInsets.only(top: 10)),
+                CircleAvatar(
+                  backgroundImage: AssetImage('assets/android_fly.jpg'),
+                  radius: 50,
+                ),
+                Padding(padding: EdgeInsets.only(top: 10)),
+                Row(
+                  children: [
+                    Icon(Icons.mail, size: 25, color: Colors.white,),
+                    Padding(padding: EdgeInsets.only(left: 5)),
+                    Text('albert95danilov@gmail.com', style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        fontFamily: 'Fredoka'
+                    ))
+                  ],
+                ),
+                Padding(padding: EdgeInsets.only(top: 10)),
+                Text('Count: $_count', style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.white,
+                    fontFamily: 'Fredoka'
+                ))
+              ],
+            ),
+          ],
         ),
-        body: Container(
-            color: Colors.cyan,
-            child: Text('Test text', style: TextStyle(fontSize: 30),),
-            //margin: EdgeInsets.all(20.5),
-            // margin:  EdgeInsets.symmetric(horizontal: 30.0, vertical: 15.0),
-            margin: EdgeInsets.fromLTRB(30.0, 30.0, 10.0, 10.0),
-            padding: EdgeInsets.all(15.0),
-          ),
-
-          // child: Image(
-          //   image: AssetImage('assets/android_fly.jpg'),
-          //   //image: NetworkImage('https://ru.tab-tv.com/wp-content/uploads/android-logo-white.png'),
-          // ),
-
-          // child: TextButton.icon(
-          //   icon: Icon(Icons.settings),
-          //   label: Text('Press on me'),
-          //   onPressed: () {},
-          // )
-
-          //RaisedButton(onPressed: () {}, child: Text('Press on me'), color: Colors.green),
-
-          //FlatButton(onPressed: () {}, child: Text('Press on me'), color: Colors.green),
-
-          //Icon(Icons.settings, size: 45, color: Colors.deepPurple,),
-
-          // Text('Albert Danilov', style: TextStyle(
-          //     fontSize: 20,
-          //     color: Colors.deepPurple,
-          //     fontFamily: 'Fredoka'
-          // ),),
-        floatingActionButton: FloatingActionButton(
-          child: Text('Press'),
-          backgroundColor: Colors.amber,
-          onPressed: () {
-            print('Clicked');
-          },
-        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {
+            _count++;
+          });
+        },
+        child: Icon(Icons.access_alarm),
+        backgroundColor: Colors.black26,
       ),
     );
   }
-
 }
